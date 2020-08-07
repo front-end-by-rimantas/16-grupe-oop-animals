@@ -5,51 +5,67 @@
 // receptas -> patiekalas
 
 /*
-
 - gyvunai
 ----- zinduoliai
 -------- suo
 -------- kate
 ----- zuvys
 -------- auksine zuvele
-
 */
 
-
-
-// suo
-
-class Dog {
-    constructor(name, age, color, breed) {
+class Animal {
+    constructor(name, color) {
         this.name = name;
-        this.age = age;
-        this.furColor = color;
-        this.breed = breed;
+        this.color = color;
     }
 
-    makeSound() {
-        console.log('Bark bark!!');
-    }
-
-    whatIsYourName(howManyTimes = 1) {
-        for (let i = 0; i < howManyTimes; i++) {
-            console.log(`Bark! My name is ${this.name}`);
-        }
-    }
-
-    describe() {
-        console.log(`I am a dog "${this.breed}" named ${this.name} with fur color ${this.furColor} and age ${this.age}.`);
+    sayName() {
+        console.log(`My name is ${this.name}`);
     }
 }
 
-const rexas = new Dog('Rex', 2, 'brown', 'Lietuvos lenciuginis');
-const sargis = new Dog('Sargis', 0, 'orange', 'Tax');
-const margis = new Dog('Margis', 1, 'ginger', 'Colli');
+class Mammal extends Animal {
+    constructor(name, color, legs) {
+        super(name, color);
+        this.legsCount = legs;
+    }
 
-rexas.whatIsYourName(3);
-sargis.whatIsYourName();
-margis.whatIsYourName(7);
+    makeSound() {
+        console.log(`${this.name} says: Bark bark!`);
+    }
+}
 
-rexas.describe();
-sargis.describe();
-margis.describe();
+class Fish extends Animal {
+    constructor(name, color, fins) {
+        super(name, color);
+        this.finsCount = fins;
+    }
+}
+
+class Dog extends Mammal {
+    constructor(name, color, legs) {
+        super(name, color, legs);
+    }
+}
+
+class Cat extends Mammal {
+    constructor(name, color, legs) {
+        super(name, color, legs);
+    }
+
+    makeSound() {
+        console.log(`${this.name} says: Meow meow!`);
+    }
+}
+
+const rexas = new Dog('Rexas', 'brown', 4);
+const rainis = new Cat('Rainis', 'ginger', 4);
+const nemo = new Fish('Nemo', 'shiny', 7);
+
+console.log(rexas);
+console.log(rainis);
+console.log(nemo);
+
+rexas.makeSound();
+rainis.makeSound();
+nemo.sayName();
